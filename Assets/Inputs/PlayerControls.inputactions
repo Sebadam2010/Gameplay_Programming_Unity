@@ -1,5 +1,5 @@
 {
-    "name": "InputActions",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Player",
@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Buttons",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "26d8c349-43ea-47cd-a863-04e4e1048dc8",
+                    "id": "287a63b5-d54e-408d-a9ad-8f0b21a801e5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -265,34 +265,23 @@
                 },
                 {
                     "name": "",
-                    "id": "e5234bfa-2633-4136-9f5c-eb5dc820f90f",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "01484143-97ae-419f-8cef-a9a3c6b54274",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "65f372c7-d5d1-4355-9902-0b7e39afa14c",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Buttons",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5234bfa-2633-4136-9f5c-eb5dc820f90f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

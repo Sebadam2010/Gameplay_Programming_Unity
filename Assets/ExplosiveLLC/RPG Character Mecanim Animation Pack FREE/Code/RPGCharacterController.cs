@@ -251,7 +251,7 @@ namespace RPGCharacterAnimsFREE
         public IActionHandler GetHandler(string action)
         {
             if (HandlerExists(action)) { return actionHandlers[action]; }
-            Debug.LogError("RPGCharacterController: No handler for action \"" + action + "\"");
+            //Debug.LogError("RPGCharacterController: No handler for action \"" + action + "\"");
             return actionHandlers["Null"];
         }
 
@@ -341,6 +341,8 @@ namespace RPGCharacterAnimsFREE
         public void SetMoveInput(Vector3 _moveInput)
         {
             this._moveInput = _moveInput;
+
+            Debug.Log("MoveInput: " + _moveInput);
 
             // Forward vector relative to the camera along the x-z plane.
             Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
