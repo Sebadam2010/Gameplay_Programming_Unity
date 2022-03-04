@@ -21,9 +21,6 @@ public class ThirdPersonController : MonoBehaviour
     private Animator animator;
     bool can_jump = true;
 
-    //maybe dont need this
-    private bool isGrounded;
-
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -60,26 +57,35 @@ public class ThirdPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera);
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera);
+        //pushing character relative to camera
+        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
+        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
+
+        //dont continue to accelerate after letting go of controller
         forceDirection = Vector3.zero;
 
-        Debug.Log("rigidbody velocity y = " + rb.velocity.y);
 
+        //rigidbody is falling
         if (rb.velocity.y < 0f)
         {
-            rb.velocity -= Vector3.down * Physics.gravity.y * 2 * Time.fixedDeltaTime;
+            //increasing acceleration of fall
+            rb.velocity -= Vector3.down * Physics.gravity.y * 1.5f * Time.fixedDeltaTime;
+            
+
             animator.SetBool("isFalling", true);
         }
             
-        
-
-
         Vector3 horizontalVelocity = rb.velocity;
+
+        //only have horizontal
         horizontalVelocity.y = 0;
+
+        //checking if we are faster than max speed
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
+            
+            //Setting it back to max speed
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
         LookAt();
@@ -124,7 +130,7 @@ public class ThirdPersonController : MonoBehaviour
     private bool IsGrounded()
     {
         Ray ray = new Ray(this.transform.position + Vector3.up * 0.25f, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 0.6f))
         {
             animator.SetBool("isGrounded", true);
             animator.SetBool("isJumping", false);
