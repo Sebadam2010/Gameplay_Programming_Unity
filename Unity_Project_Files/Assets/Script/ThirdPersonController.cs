@@ -32,6 +32,13 @@ public class ThirdPersonController : MonoBehaviour
     Color colorToFadeTo;
     float fadeTime = 5f;
 
+    //D3
+
+    private GameObject button1;
+    private ButtonScript button1Script;
+    private GameObject button1Trigger;
+    private buttonTriggerScript button1TriggerScript;
+
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -40,6 +47,12 @@ public class ThirdPersonController : MonoBehaviour
 
         speedBoostImagei = speedBoostImage.GetComponent<Image>();
         colorToFadeTo = new Color(1f, 1f, 1f, 0f);
+
+        button1 = GameObject.FindWithTag("Button1");
+        button1Script = button1.GetComponent<ButtonScript>();
+
+        button1Trigger = button1.transform.GetChild(0).gameObject;
+        button1TriggerScript = button1Trigger.GetComponent<buttonTriggerScript>();
 
     }
 
@@ -185,7 +198,18 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
-        animator.SetTrigger("attack");
+        if (button1TriggerScript.triggerEntered)
+        {
+            Debug.Log("Button Pressed");
+
+            button1Script.buttonPressed();
+
+        }
+        else
+        {
+            animator.SetTrigger("attack");
+        }
+        
     }
 
     public void CallPowerup(string type)
