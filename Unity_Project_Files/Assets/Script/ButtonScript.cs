@@ -35,7 +35,7 @@ public class ButtonScript : MonoBehaviour
     {
 
         timeline.Play();
-        triggerScript.disableInter\actUI();
+        triggerScript.disableInteractUI();
     }
 
 
