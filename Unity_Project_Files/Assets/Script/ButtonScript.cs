@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ButtonScript : MonoBehaviour
     private buttonTriggerScript triggerScript;
     private Animator buttonAnimator;
 
+    public PlayableDirector timeline;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,8 @@ public class ButtonScript : MonoBehaviour
         triggerGO = this.transform.GetChild(0).gameObject;
         buttonAnimator = this.gameObject.GetComponent<Animator>();
         triggerScript = triggerGO.GetComponent<buttonTriggerScript>();
+
+
     }
 
     // Update is called once per frame
@@ -28,9 +33,9 @@ public class ButtonScript : MonoBehaviour
 
     public void buttonPressed()
     {
-        buttonAnimator.SetBool("ButtonPressed", true);
-        triggerScript.OpenDoor();
 
+        timeline.Play();
+        triggerScript.disableInter\actUI();
     }
 
 
